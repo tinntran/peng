@@ -8,5 +8,10 @@ export default function defaultNavigator(present: Present) {
       present.selectedIndex--
     }
   })
-}
 
+  window.addEventListener('mousedown', e => {
+    if (e.button === 0 && present.selectedIndex < present.slotNames.length - 1) {
+      present.selectedIndex++
+    }
+  })
+}
