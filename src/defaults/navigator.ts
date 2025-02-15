@@ -1,12 +1,12 @@
-import { Present } from '../elements'
+import type { Present } from '../elements'
 
 export default function defaultNavigator(present: Present) {
   let shouldNavigate = true
 
   window.addEventListener('keydown', e => {
-    if (e.key == 'ArrowRight' && present.selectedIndex < present.slotNames.length - 1) {
+    if ((e.key === 'ArrowRight' || e.key === 'Enter') && present.selectedIndex < present.slotNames.length - 1) {
       present.selectedIndex++
-    } else if (e.key == 'ArrowLeft' && present.selectedIndex > 0) {
+    } else if (e.key === 'ArrowLeft' && present.selectedIndex > 0) {
       present.selectedIndex--
     }
 
