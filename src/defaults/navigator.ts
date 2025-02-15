@@ -28,6 +28,4 @@ export default function defaultNavigator(present: Present) {
 
     shouldNavigate = true
   })
-
-  console.log(100)
 }
