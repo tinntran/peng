@@ -42,9 +42,9 @@ export default class Present extends LitElement {
   protected firstUpdated(changedProperties: PropertyValues): void {
     super.firstUpdated(changedProperties)
     
-    Array.from(document.querySelectorAll('p-present > p-slide'), slide => {
+    for (const slide of this.querySelectorAll('& > p-slide')) {
       this.slotNames.push(slide.slot)
-    })
+    }
 
     this.selectedSlotName = this.slotNames[this.selectedIndex]
   }
