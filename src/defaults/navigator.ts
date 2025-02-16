@@ -1,3 +1,4 @@
+import { parseAttrCmd } from '../attrcmd'
 import type { Present } from '../elements'
 
 export default function defaultNavigator(present: Present) {
@@ -14,10 +15,19 @@ export default function defaultNavigator(present: Present) {
   })
 
   for (const intr of present.querySelectorAll<HTMLElement>('[p-intr]')) {
-    intr.style.cursor = 'pointer'
+    function isIntr(): boolean {
+      const isIntr = parseAttrCmd(intr, 'p-intr')?.positional[0] || ''
 
-    intr.addEventListener('mousedown', () => {
-      shouldNavigate = false
+      if (isIntr === '' || isIntr === 'true') return true
+      else return false
+    }
+
+    if (isIntr()) intr.style.cursor = 'pointer'
+
+    intr.addEventListener('mousedown', e => {
+      if (e.button === 0) {
+        shouldNavigate = !isIntr()
+      }
     })
   }
 
