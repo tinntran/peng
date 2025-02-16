@@ -9,7 +9,10 @@ export default defineConfig({
     lib: {
       entry: resolve(__dirname, 'src/index.ts'),
       name: 'Peng',
-      fileName: 'peng',
+      fileName: 'peng'
+    },
+    rollupOptions: {
+      external: ['src/**/*.test.ts']
     }
   }
 })
