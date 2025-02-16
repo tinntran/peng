@@ -21,12 +21,6 @@ export default class Present extends LitElement {
   @property({ attribute: false })
   selectedSlotName?: string
 
-  connectedCallback() {
-    super.connectedCallback()
-
-    this.navigate()
-  }
-
   navigate() {
     defaultNavigator(this)
   }
@@ -47,6 +41,8 @@ export default class Present extends LitElement {
     }
 
     this.selectedSlotName = this.slotNames[this.selectedIndex]
+
+    this.navigate()
   }
 
   protected render() {
