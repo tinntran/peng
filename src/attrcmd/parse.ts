@@ -8,13 +8,12 @@ export function parseCmd(inp: string): AttrCmdArgs {
 
   let currentFlag: string | null = null
 
-  const validFlag = /-(\w+)/g
   const splitCondition = /\s+/g
 
   inp.split(splitCondition)?.map(word => {
     const str = word.replaceAll(/["']/g, '')
 
-    if (validFlag.test(str)) {
+    if (str.startsWith('-')) {
       currentFlag = str
     }
 
