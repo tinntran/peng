@@ -1,10 +1,10 @@
 export interface AttrCmdArgs {
   positional: string[]
-  flags: Record<string, string>
+  flags: Map<string, string>
 }
 
 export function parseCmd(inp: string): AttrCmdArgs {
-  const result: AttrCmdArgs = { positional: [], flags: {} }
+  const result: AttrCmdArgs = { positional: [], flags: new Map() }
 
   let currentFlag: string | null = null
 
@@ -18,12 +18,12 @@ export function parseCmd(inp: string): AttrCmdArgs {
     }
 
     if (str === currentFlag) {
-      result.flags[currentFlag.slice(1)] = 'true'
+      result.flags.set(currentFlag.slice(1), 'true')
       return
     }
 
     if (currentFlag) {
-      result.flags[currentFlag.slice(1)] = str
+      result.flags.set(currentFlag.slice(1), str)
     } else {
       result.positional.push(str)
     }
@@ -35,7 +35,11 @@ export function parseCmd(inp: string): AttrCmdArgs {
 export function parseAttrCmd(element: Element, attrQuery: string): AttrCmdArgs | null {
   const attr = element.getAttribute(`${attrQuery}`)
 
-  if (attr) return parseCmd(attr)
+  if (attr) {
+    const args = parseCmd(attr) 
+
+    return args 
+  }
 
   return null
 }
@@ -46,7 +50,7 @@ export function parseAttrCmdForEvery<T extends Element>(
   func: (args: AttrCmdArgs, element: T) => void
 ) {
   for (const el of root.querySelectorAll<T>(`[${attrQuery}]`)) {
-    const args = parseAttrCmd(el, attrQuery) || { positional: [], flags: {} }
+    const args = parseAttrCmd(el, attrQuery) || { positional: [], flags: new Map() }
 
     func(args, el)
   }
