@@ -15,11 +15,16 @@ export function parseCmd(inp: string): AttrCmdArgs {
     const str = word.replaceAll(/["']/g, '')
 
     if (validFlag.test(str)) {
-      currentFlag = str.slice(1)
+      currentFlag = str
+    }
+
+    if (str === currentFlag) {
+      result.flags[currentFlag.slice(1)] = 'true'
+      return
     }
 
     if (currentFlag) {
-      result.flags[currentFlag] = str
+      result.flags[currentFlag.slice(1)] = str
     } else {
       result.positional.push(str)
     }
