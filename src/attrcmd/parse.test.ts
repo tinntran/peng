@@ -16,14 +16,14 @@ test('parse cmd', () => {
 })
 
 test('parse attr cmd', () => {
-  document.body.innerHTML = `<div id="test" p-test="pos_a pos_b -flag1 c -flag2 d -flag3 &another-attr" another-attr="hi"></div>`
+  document.body.innerHTML = `<div id="test" p-test="pos_a pos_b &another-attr -flag1 c -flag2 d -flag3 &another-attr" another-attr="hi"></div>`
 
   const el = document.getElementById('test')
 
   expect(el).not.toBeNil()
 
   expect(parseAttrCmd(el!, 'p-test')).toEqual({
-    positional: ['pos_a', 'pos_b'],
+    positional: ['pos_a', 'pos_b', 'hi'],
     flags: new Map([
       ['flag1', 'c'],
       ['flag2', 'd'],
