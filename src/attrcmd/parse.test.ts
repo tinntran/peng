@@ -22,7 +22,7 @@ test('parse attr cmd', () => {
 
   expect(el).not.toBeNil()
 
-  expect(parseAttrCmd(el!, 'p-test')).toEqual({
+  if (el) expect(parseAttrCmd(el, 'p-test')).toEqual({
     positional: ['pos_a', 'pos_b', 'hi'],
     flags: new Map([
       ['flag1', 'c'],
