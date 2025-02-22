@@ -1,6 +1,8 @@
 import { css, html, LitElement, type PropertyValues } from 'lit'
 import { property } from 'lit/decorators.js'
 import { defaultNavigator } from '../defaults'
+import { parseAttrCmdForEvery } from '../attrcmd'
+import anime, { type AnimeParams } from 'animejs'
 
 export default class Present extends LitElement {
   static styles = css`
@@ -25,7 +27,7 @@ export default class Present extends LitElement {
     defaultNavigator(this)
   }
 
-  protected willUpdate(changedProperties: PropertyValues): void {
+  protected willUpdate(changedProperties: PropertyValues) {
     super.willUpdate(changedProperties)
 
     if (changedProperties.get('selectedIndex') !== this.selectedIndex) {
@@ -33,7 +35,7 @@ export default class Present extends LitElement {
     }
   }
 
-  protected firstUpdated(changedProperties: PropertyValues): void {
+  protected firstUpdated(changedProperties: PropertyValues) {
     super.firstUpdated(changedProperties)
     
     for (const slide of this.querySelectorAll('& > p-slide')) {
@@ -41,6 +43,24 @@ export default class Present extends LitElement {
     }
 
     this.selectedSlotName = this.slotNames[this.selectedIndex]
+
+    parseAttrCmdForEvery<HTMLElement>(this, 'p-anim', (args, el) => {
+      const params: AnimeParams = { targets: el }
+
+      for (const [k, v] of args.flags.entries()) {
+        if (k === 'inline-block')
+          el.style.display = 'inline-block'
+
+        if (!Number.isNaN(Number(v)))
+          params[k] = Number(v)
+        else if (v === 'true' || v === 'false')
+          params[k] = Boolean(v)
+        else
+          params[k] = v
+      }
+
+      anime(params)
+    })
 
     this.navigate()
   }
