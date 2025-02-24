@@ -2,6 +2,8 @@ const fileName = prompt('svg file name', 'assets/peng-logo.svg') || 'assets/peng
 const PIXEL_SIZE = 8
 const PHEIGHT = 5
 const HEIGHT = PIXEL_SIZE * PHEIGHT
+const PWIDTH = 11
+const WIDTH = PIXEL_SIZE * PWIDTH
 const COLOR = 'black'
 
 let content = ''
@@ -16,7 +18,7 @@ function prect(w: number, h: number, x = 0, y = 0): string {
   return `<rect width="${w * PIXEL_SIZE}" height="${h * PIXEL_SIZE}" x="${x * PIXEL_SIZE}" y="${y * PIXEL_SIZE}" fill="${COLOR}" />`
 }
 
-append(`<svg height="${HEIGHT}" xmlns="http://www.w3.org/2000/svg">`)
+append(`<svg width="${WIDTH}" height="${HEIGHT}" xmlns="http://www.w3.org/2000/svg">`)
 
 // [
 
