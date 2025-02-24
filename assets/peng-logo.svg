@@ -1,17 +1,18 @@
 <svg width="88" height="40" xmlns="http://www.w3.org/2000/svg">
-<rect width="8" height="8" x="8" y="0" fill="black" />
-<rect width="8" height="8" x="0" y="8" fill="black" />
-<rect width="8" height="8" x="0" y="16" fill="black" />
-<rect width="8" height="8" x="0" y="24" fill="black" />
-<rect width="8" height="8" x="8" y="32" fill="black" />
-<rect width="8" height="16" x="24" y="8" fill="black" />
-<rect width="8" height="16" x="40" y="8" fill="black" />
-<rect width="8" height="8" x="56" y="8" fill="black" />
-<rect width="8" height="8" x="64" y="16" fill="black" />
-<rect width="8" height="8" x="56" y="24" fill="black" />
-<rect width="8" height="8" x="72" y="0" fill="black" />
-<rect width="8" height="8" x="80" y="8" fill="black" />
-<rect width="8" height="8" x="80" y="16" fill="black" />
-<rect width="8" height="8" x="80" y="24" fill="black" />
-<rect width="8" height="8" x="72" y="32" fill="black" />
+<rect width="88" height="40" x="0" y="0" fill="black" />
+<rect width="8" height="8" x="8" y="0" fill="white" />
+<rect width="8" height="8" x="0" y="8" fill="white" />
+<rect width="8" height="8" x="0" y="16" fill="white" />
+<rect width="8" height="8" x="0" y="24" fill="white" />
+<rect width="8" height="8" x="8" y="32" fill="white" />
+<rect width="8" height="16" x="24" y="8" fill="white" />
+<rect width="8" height="16" x="40" y="8" fill="white" />
+<rect width="8" height="8" x="56" y="8" fill="white" />
+<rect width="8" height="8" x="64" y="16" fill="white" />
+<rect width="8" height="8" x="56" y="24" fill="white" />
+<rect width="8" height="8" x="72" y="0" fill="white" />
+<rect width="8" height="8" x="80" y="8" fill="white" />
+<rect width="8" height="8" x="80" y="16" fill="white" />
+<rect width="8" height="8" x="80" y="24" fill="white" />
+<rect width="8" height="8" x="72" y="32" fill="white" />
 </svg>

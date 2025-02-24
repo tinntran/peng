@@ -4,7 +4,8 @@ const PHEIGHT = 5
 const HEIGHT = PIXEL_SIZE * PHEIGHT
 const PWIDTH = 11
 const WIDTH = PIXEL_SIZE * PWIDTH
-const COLOR = 'black'
+const COLOR = 'white'
+const BG = 'black'
 
 let content = ''
 
@@ -14,14 +15,16 @@ async function append(data: string) {
   content += data + '\n'
 }
 
-function prect(w: number, h: number, x = 0, y = 0): string {
-  return `<rect width="${w * PIXEL_SIZE}" height="${h * PIXEL_SIZE}" x="${x * PIXEL_SIZE}" y="${y * PIXEL_SIZE}" fill="${COLOR}" />`
+function prect(w: number, h: number, x = 0, y = 0, fill = COLOR): string {
+  return `<rect width="${w * PIXEL_SIZE}" height="${h * PIXEL_SIZE}" x="${x * PIXEL_SIZE}" y="${y * PIXEL_SIZE}" fill="${fill}" />`
 }
 
 append(`<svg width="${WIDTH}" height="${HEIGHT}" xmlns="http://www.w3.org/2000/svg">`)
 
-// [
+// bg 
+append(prect(PWIDTH, PHEIGHT, 0, 0, BG))
 
+// [
 append(prect(1, 1, 1))
 
 for (let i = 1; i < PHEIGHT - 1; i++) {
