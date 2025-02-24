@@ -1,13 +1,12 @@
 import { parseAttrCmdForEvery } from './parse'
 import anime from 'animejs'
 
-export interface ParsedAnim {
+export interface Anim extends anime.AnimeInstance {
   start: 'onclick' | 'withprev'
-  instance: anime.AnimeInstance
 }
 
-export function parseAnims(root: ParentNode): ParsedAnim[] {
-  const result: ParsedAnim[] = []
+export function parseAnims(root: ParentNode): Anim[] {
+  const result: Anim[] = []
 
   parseAttrCmdForEvery<HTMLElement>(root, 'p-anim', (args, el) => {
     const params: anime.AnimeParams = { targets: el }
@@ -40,23 +39,23 @@ export function parseAnims(root: ParentNode): ParsedAnim[] {
 
     instance.pause()
 
-    result.push({ start, instance })
+    result.push({ start, ...instance })
   })
 
   return result
 }
 
-export function *generateAnims(parsedAnims: ParsedAnim[]): Generator<anime.AnimeInstance[], void, unknown> {
-  let group: anime.AnimeInstance[] = []
+export function *generateAnims(parsedAnims: Anim[]): Generator<Anim[], void, unknown> {
+  let group: Anim[] = []
 
-  for (const { start, instance } of parsedAnims) {
-    switch (start) {
+  for (const anim of parsedAnims) {
+    switch (anim.start) {
       case 'onclick':
         yield group
-        group = [instance]
+        group = [anim]
         break
       case 'withprev':
-        group.push(instance)
+        group.push(anim)
         break
     }
   }
