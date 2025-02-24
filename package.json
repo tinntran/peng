@@ -14,7 +14,8 @@
   },
   "scripts": {
     "dev": "vite build",
-    "build": "tsc && biome lint && vite build"
+    "build": "tsc && biome lint && vite build",
+    "renderlogo": "bun ./assets/renderlogo.ts"
   },
   "dependencies": {
     "animejs": "^3.2.2",
