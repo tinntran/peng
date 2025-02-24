@@ -48,17 +48,19 @@ export function parseAnims(root: ParentNode): Anim[] {
 export function *generateAnims(parsedAnims: Anim[]): Generator<Anim[], void, unknown> {
   let group: Anim[] = []
 
-  for (const anim of parsedAnims) {
-    switch (anim.start) {
-      case 'onclick':
-        yield group
-        group = [anim]
-        break
-      case 'withprev':
-        group.push(anim)
-        break
+  for (let i = 0; i < parsedAnims.length; i++) {
+    const anim = parsedAnims[i]
+
+    if (anim.start === 'onclick') {
+      if (group.length > 0) yield group
+
+      group = [anim]
+    } else {
+      group.push(anim)
+    }
+
+    if (i === parsedAnims.length - 1) {
+      yield group
     }
   }
-
-  yield group
 }
