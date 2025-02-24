@@ -60,4 +60,6 @@ export function *generateAnims(parsedAnims: ParsedAnim[]): Generator<anime.Anime
         break
     }
   }
+
+  yield group
 }
