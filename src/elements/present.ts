@@ -26,21 +26,24 @@ export default class Present extends LitElement {
     defaultNavigator(this)
   }
 
+  getSlide(index: number): Slide | null {
+    return this.querySelector<Slide>(`p-slide[slot="${this.slotNames[index]}"]`)
+  }
+
+  getCurrentSlide(): Slide | null {
+    return this.getSlide(this.selectedIndex)
+  }
+
   protected willUpdate(changedProperties: PropertyValues) {
     super.willUpdate(changedProperties)
 
     if (changedProperties.get('selectedIndex') !== this.selectedIndex) {
-      this.querySelector<Slide>(`p-slide[slot="${this.selectedSlotName}"]`)?.unselected()
+      this.getCurrentSlide()?.dispatchEvent(new Event('peng:unselected', { composed: true, bubbles: true }))
 
       this.selectedSlotName = this.slotNames[this.selectedIndex]
 
-      this.querySelector<Slide>(`p-slide[slot="${this.selectedSlotName}"]`)?.selected()
+      this.getCurrentSlide()?.dispatchEvent(new Event('peng:selected', { composed: true, bubbles: true }))
     }
-  }
-
-  protected updated(changedProperties: PropertyValues): void {
-    super.updated(changedProperties)
-
   }
 
   protected firstUpdated(changedProperties: PropertyValues) {
@@ -51,7 +54,6 @@ export default class Present extends LitElement {
     }
 
     this.selectedSlotName = this.slotNames[this.selectedIndex]
-
 
     this.navigate()
   }

@@ -36,7 +36,7 @@ export function parseAttrCmd(element: Element, attrQuery: string): AttrCmdArgs |
   const attr = element.getAttribute(`${attrQuery}`)
 
   if (attr) {
-    const args = parseCmd(attr) 
+    const args = parseCmd(attr)
 
     args.positional.map((arg, i) => {
       if (arg.startsWith('&')) args.positional[i] = element.getAttribute(arg.slice(1)) || 'nil'
@@ -46,7 +46,7 @@ export function parseAttrCmd(element: Element, attrQuery: string): AttrCmdArgs |
       if (v.startsWith('&')) args.flags.set(k, element.getAttribute(v.slice(1)) || 'nil')
     }
 
-    return args 
+    return args
   }
 
   return null
