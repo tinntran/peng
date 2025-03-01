@@ -1,9 +1,11 @@
 import * as elements from './elements'
-import init from './init'
 import * as defaults from './defaults'
+import * as attrcmd from './attrcmd'
+import init from './init'
 
 export {
   elements,
   defaults,
+  attrcmd,
   init
 }
