@@ -40,7 +40,7 @@ export default class Slide extends LitElement {
   protected selected() {
     this.animGroups = generateAnims(this.anims)
 
-    if (this.anims[0].start === 'withprev')
+    if (this.anims[0] && this.anims[0].start === 'withprev')
       this.playNextAnim()
   }
 
