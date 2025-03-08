@@ -1,9 +1,13 @@
 # Peng
-<img src="assets/peng-logo.svg" alt="logo" align="left">
-Peng is a javascript library that renders presetations from HTML.
+<img src="assets/peng-logo.svg" alt="logo">
+<p>Peng is a javascript library that renders presetations from HTML.</p>
 
+> [!WARNING]
+> The project is still under development. Any features could be removed without any announcements.
+> <br>
+> Use at your own risk!
 
-# Example
+## Example
 ```html
 
 <head>
